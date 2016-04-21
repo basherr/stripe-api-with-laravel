@@ -12,9 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.buy');
 });
 
+Route::resource('buy', 'BillingController');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
