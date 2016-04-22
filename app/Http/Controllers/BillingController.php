@@ -18,11 +18,16 @@ class BillingController extends Controller
      */
     public function store(Request $request)
     {
-        $bill = app('BillingInterface');
-        $customer_id = $bill->charge( $request->all() );
-        
-        $user = User::first();
-        $user->billing_id = $customer_id;
-        $user->save();
+        try {
+                $bill = app('BillingInterface');
+                $customer_id = $bill->charge( $request->all() );
+                
+                $user = User::find(1);
+                $user->billing_id = $customer_id;
+                $user->save();
+
+        } catch (Exception $e) {
+            return redirect()->back()->with( $e->getMessage() );
+        }
     }
 }

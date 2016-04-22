@@ -7,6 +7,13 @@
 </head>
 <body>
 	<h2>Buy for $10</h2>
+	@if(Session::has('flash_message'))
+
+		<div class="alert alert-danger">
+			{!! Session::get('flash_message') !!}
+		</div>
+
+	@endif
 	{!! Form::open(['url' => 'buy', 'id' => 'bill_form']) !!}
 		<div class="payments-error alert alert-danger" style="display: none;"></div>
 		<div class="row">
